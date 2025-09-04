@@ -1,15 +1,11 @@
 package com.example.javafxtest.controller;
 
 import com.example.javafxtest.exceptions.FieldValidationException;
+import com.example.javafxtest.model.User;
 import com.example.javafxtest.services.LoginService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
-
-import java.io.IOException;
+import javafx.scene.control.*;
 
 public class LoginController {
 
@@ -45,9 +41,13 @@ public class LoginController {
         String password = tf_password.getText();
 
         try {
-            boolean success = loginService.login(email, password);
-            if (success) {
-                System.out.println("Login successful!");
+            User user = loginService.login(email, password);
+            if (user != null) {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Sucesso");
+                alert.setHeaderText("Login realizado com sucesso!");
+                alert.setContentText("Bem-vindo! " + user.getName());
+                alert.showAndWait();
                 // Aqui você pode adicionar a lógica para redirecionar o usuário para a próxima tela
             }
         } catch (FieldValidationException e) {
@@ -56,7 +56,11 @@ public class LoginController {
                 case "password" -> lb_error_password.setText(e.getMessage());
             }
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erro");
+            alert.setHeaderText(null);
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
         }
     }
 }

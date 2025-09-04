@@ -11,7 +11,7 @@ public class LoginService {
         this.userRepository = userRepository;
     }
 
-    public boolean login(String email, String password) throws Exception {
+    public User login(String email, String password) throws Exception {
 
         // --- 1. Valida campos obrigatórios ---
         if (email == null || email.isBlank()) {
@@ -39,7 +39,7 @@ public class LoginService {
         }
 
         // --- Login válido ---
-        return true;
+        return user;
     }
 
 

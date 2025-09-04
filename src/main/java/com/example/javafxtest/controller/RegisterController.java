@@ -75,7 +75,11 @@ public class RegisterController {
                 case "password" -> lb_error_password.setText(e.getMessage());
             }
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erro");
+            alert.setHeaderText(null);
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
         }
     }
 

@@ -6,11 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserMemoryRepository implements IUserRepository {
-    List<User> users;
-
-    public UserMemoryRepository() {
-        this.users = new ArrayList<>();
-    }
+    private static final List<User> users = new ArrayList<>(); // MONOSTATE, remover construtor
 
     @Override
     public void createUser(String name, String email, String password) {
