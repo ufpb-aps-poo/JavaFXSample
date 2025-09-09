@@ -2,7 +2,7 @@ package com.example.javafxtest.controller;
 
 import com.example.javafxtest.exceptions.FieldValidationException;
 import com.example.javafxtest.repository.UserMemoryRepository;
-import com.example.javafxtest.services.LoginService;
+// import com.example.javafxtest.services.LoginService;
 import com.example.javafxtest.services.RegisterService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -66,7 +66,9 @@ public class RegisterController {
             alert.setContentText("Usuário cadastrado com sucesso!");
             alert.showAndWait();
 
-            goToLogin(event);
+
+            // REMOVA OS COMENTARIOS QUANDO FOR IMPLEMENTAR O LOGIN
+            //goToLogin(event);
 
         } catch (FieldValidationException e) {
             switch (e.getFieldName()) {
@@ -74,16 +76,17 @@ public class RegisterController {
                 case "email" -> lb_error_email.setText(e.getMessage());
                 case "password" -> lb_error_password.setText(e.getMessage());
             }
-        } catch (IOException e) {
+        } /*catch (IOException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erro");
             alert.setHeaderText(null);
             alert.setContentText(e.getMessage());
             alert.showAndWait();
-        }
+        }*/  // REMOVA OS COMENTARIOS QUANDO FOR IMPLEMENTAR O LOGIN
     }
 
-    private void goToLogin(ActionEvent event) throws IOException {
+    // REMOVA OS COMENTARIOS QUANDO FOR IMPLEMENTAR O LOGIN
+/*    private void goToLogin(ActionEvent event) throws IOException {
         // Carrega o FXML da tela de login
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/javafxtest/login.fxml"));
         Parent loginRoot = loader.load();
@@ -97,6 +100,6 @@ public class RegisterController {
         stage.setScene(new Scene(loginRoot));
         stage.setTitle("Login");
         stage.show();
-    }
+    }*/
 
 }
